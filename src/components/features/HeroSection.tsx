@@ -11,24 +11,27 @@ export function HeroSection({ className }: HeroSectionProps) {
     <section
       aria-label="Introduction to ClauseLens"
       className={cn(
-        "pt-7 pb-4 sm:pt-9 sm:pb-6",
-        "text-center max-w-[820px] mx-auto px-5 sm:px-8",
+        "pt-5 pb-2 sm:pt-7 sm:pb-3",
+        "text-center max-w-[780px] mx-auto px-4 sm:px-8",
         className,
       )}
     >
       <div className="space-y-2.5">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius-full)] bg-[var(--color-amber-subtle)] border border-[var(--color-amber-border)] text-[11px] font-semibold text-[var(--color-amber)] tracking-wider uppercase font-sans shadow-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-amber)]" aria-hidden="true" />
+          <span>Private Legal Research Desk</span>
+        </div>
+
         <h1
-          className="text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-tight text-[var(--color-text-primary)] leading-[1.18] font-serif"
+          className="text-2xl sm:text-3xl lg:text-[40px] font-normal tracking-tight text-[var(--color-text-primary)] leading-[1.2] font-serif"
           style={{ fontFamily: "var(--font-serif)" }}
         >
-          Understand legal text{" "}
-          <span className="italic font-serif text-[var(--color-brand)]">
-            before it becomes a problem.
-          </span>
+          Understand what you&apos;re signing{" "}
+          <span className="italic font-serif text-[var(--color-brand)]">with clarity.</span>
         </h1>
 
-        <p className="text-sm sm:text-base text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed font-sans">
-          A private research desk to analyze contract clauses, evaluate differences, and prepare structured questions for legal counsel.
+        <p className="text-xs sm:text-sm text-[var(--color-text-secondary)] max-w-lg mx-auto leading-relaxed font-sans">
+          Turn legal language into clear information, review points, and practical next steps.
         </p>
       </div>
     </section>

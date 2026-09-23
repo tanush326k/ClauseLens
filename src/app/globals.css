@@ -7,48 +7,67 @@
    ============================================================ */
 
 :root {
-  /* ── Canvas & Surface Palette (Warm Ivory Paper Desk) ── */
-  --color-bg:            #FAF8F5;       /* Warm editorial paper canvas */
-  --color-bg-subtle:     #F3EFEA;       /* Secondary neutral parchment surface */
-  --color-bg-card:       #FFFFFF;       /* Crisp white writing surface */
-  --color-surface:       #EFEBE4;       /* Understated control fill */
-  --color-border:        #E2DDD3;       /* Delicate hairline rule */
-  --color-border-subtle: #EBE6DC;       /* Faint separator */
+  /* ── Canvas & Surface Palette (Warm Archival Paper Desk) ── */
+  --color-bg:            #F7F4EC;       /* Warm editorial parchment canvas with golden warmth */
+  --color-bg-subtle:     #EFE9DD;       /* Secondary warm neutral surface */
+  --color-bg-card:       #FFFFFF;       /* Crisp archival white writing surface */
+  --color-surface:       #E8E0D2;       /* Refined control fill */
+  --color-surface-hover: #DFD5C5;       /* Control hover state */
+  --color-border:        #DCD2C0;       /* Warm hairline rule */
+  --color-border-subtle: #E8DEC9;       /* Faint separator */
 
   /* ── Deep Archival Ink Typography ── */
-  --color-text-primary:  #181715;       /* Deep archival ink */
-  --color-text-secondary:#484540;       /* Muted charcoal */
-  --color-text-muted:    #7E7A71;       /* Editorial pencil stone */
+  --color-text-primary:  #141311;       /* Deep archival ink */
+  --color-text-secondary:#45413B;       /* Muted charcoal */
+  --color-text-muted:    #767167;       /* Editorial graphite pencil */
   --color-text-inverse:  #FFFFFF;
 
-  /* ── Single Restrained Legal Accent (Oxford Navy) ── */
-  --color-brand:         #1E2D4A;       /* Stately Oxford navy */
-  --color-brand-hover:   #131F33;       /* Midnight ink navy */
-  --color-brand-subtle:  #F0F4F8;       /* Very soft cool wash for active states */
-  --color-brand-muted:   #CCD7E4;       /* Restrained hairline outline */
+  /* ── Regal Oxford Navy (Authority & Grounding) ── */
+  --color-brand:         #112240;       /* Deep Oxford Navy */
+  --color-brand-hover:   #0A162B;       /* Midnight Navy */
+  --color-brand-subtle:  #EDF3FA;       /* Soft cool active wash */
+  --color-brand-border:  #C4D6EB;       /* Restrained hairline outline */
+  --color-brand-muted:   #7392B7;       /* Mid navy tone */
+
+  /* ── Burnished Brass / Warm Amber (Editorial Prestige) ── */
+  --color-amber:         #9C6E1E;       /* Antique warm brass */
+  --color-amber-hover:   #7D5512;       /* Deep amber */
+  --color-amber-subtle:  #FCF8F0;       /* Warm parchment wash */
+  --color-amber-border:  #EBDAB8;       /* Warm brass hairline */
+
+  /* ── Archival Forest Green (Verified Evidence & Compliance) ── */
+  --color-emerald:       #195C38;       /* Archival deep forest */
+  --color-emerald-subtle:#F0F7F3;       /* Mint parchment wash */
+  --color-emerald-border:#C0DFCD;       /* Forest hairline */
+
+  /* ── Editorial Sienna / Terracotta (Review Points & Attention) ── */
+  --color-sienna:        #943C1D;       /* Warm terracotta sienna */
+  --color-sienna-subtle: #FDF5F1;       /* Sienna wash */
+  --color-sienna-border: #ECCEC2;       /* Sienna hairline */
 
   /* ── Editorial Legal Annotations (Calm, Non-Alarmist) ── */
-  --color-warning:       #8A4B1A;       /* Editorial sienna/ochre */
-  --color-warning-bg:    #FDF8F3;
-  --color-warning-border:#EBD7C3;
+  --color-warning:       var(--color-sienna);
+  --color-warning-bg:    var(--color-sienna-subtle);
+  --color-warning-border:var(--color-sienna-border);
 
-  --color-success:       #235E3E;       /* Deep forest green */
-  --color-success-bg:    #F4F8F5;
-  --color-success-border:#C8DECFA;
+  --color-success:       var(--color-emerald);
+  --color-success-bg:    var(--color-emerald-subtle);
+  --color-success-border:var(--color-emerald-border);
 
-  --color-error:         #8F2626;       /* Restrained dark brick */
-  --color-error-bg:      #FAF3F3;
-  --color-error-border:  #E8C8C8;
+  --color-error:         #8A2222;
+  --color-error-bg:      #FDF3F3;
+  --color-error-border:  #EAC4C4;
 
-  --color-info:          #1E2D4A;
-  --color-info-bg:       #F0F4F8;
-  --color-info-border:   #CCD7E4;
+  --color-info:          var(--color-brand);
+  --color-info-bg:       var(--color-brand-subtle);
+  --color-info-border:   var(--color-brand-border);
 
   /* ── High-Performance Single-Layer Restrained Shadows ── */
-  --shadow-xs:       0 1px 2px 0 rgba(24, 23, 21, 0.03);
-  --shadow-sm:       0 1px 3px 0 rgba(24, 23, 21, 0.04);
-  --shadow-card:     0 1px 3px 0 rgba(24, 23, 21, 0.04), 0 1px 2px -1px rgba(24, 23, 21, 0.03);
-  --shadow-elevated: 0 4px 16px -2px rgba(24, 23, 21, 0.05);
+  --shadow-xs:       0 1px 2px 0 rgba(17, 34, 64, 0.04);
+  --shadow-sm:       0 1px 3px 0 rgba(17, 34, 64, 0.06), 0 1px 2px -1px rgba(17, 34, 64, 0.04);
+  --shadow-card:     0 2px 8px -2px rgba(17, 34, 64, 0.07), 0 1px 3px -1px rgba(17, 34, 64, 0.04);
+  --shadow-elevated: 0 14px 32px -6px rgba(17, 34, 64, 0.11), 0 4px 12px -2px rgba(17, 34, 64, 0.05);
+  --shadow-inner:    inset 0 1px 3px 0 rgba(17, 34, 64, 0.05);
 
   /* ── Architectural Radii (Subtle, Sharp, Crisp) ── */
   --radius-xs:   2px;

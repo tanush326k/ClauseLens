@@ -24,12 +24,6 @@ export function ClauseLensLogo({
     lg: 32,
   }[size];
 
-  const wordmarkStyles = {
-    sm: "text-xs tracking-[0.14em]",
-    md: "text-sm tracking-[0.14em]",
-    lg: "text-lg tracking-[0.16em]",
-  }[size];
-
   return (
     <div
       className={cn(
@@ -83,12 +77,15 @@ export function ClauseLensLogo({
       {variant !== "symbol" && (
         <span
           className={cn(
-            "font-sans uppercase font-bold text-[var(--color-text-primary)]",
-            wordmarkStyles,
+            "font-serif tracking-tight text-[var(--color-text-primary)] font-normal flex items-baseline gap-0.5",
+            size === "sm" && "text-base",
+            size === "md" && "text-lg",
+            size === "lg" && "text-2xl",
           )}
+          style={{ fontFamily: "var(--font-serif)" }}
         >
-          Clause
-          <span className="text-[var(--color-brand)] font-extrabold ml-0.5">Lens</span>
+          <span>Clause</span>
+          <span className="italic font-serif text-[var(--color-brand)] font-medium">Lens</span>
         </span>
       )}
     </div>

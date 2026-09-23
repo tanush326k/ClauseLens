@@ -54,14 +54,14 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
     <article
       aria-label="Legal analysis briefing"
       className={cn(
-        "w-full max-w-[1100px] mx-auto bg-[var(--color-bg-card)] rounded-[var(--radius-md)] border border-[var(--color-border)] shadow-[var(--shadow-card)] p-6 sm:p-10 lg:p-12 space-y-9 animate-in",
+        "w-full max-w-[880px] mx-auto bg-[var(--color-bg-card)] rounded-[var(--radius-lg)] border border-[var(--color-border)] shadow-[var(--shadow-card)] p-6 sm:p-10 lg:p-12 space-y-9 animate-in",
         className,
       )}
     >
       {/* ── Document Masthead ── */}
       <header className="border-b border-[var(--color-border)] pb-6 space-y-2">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[var(--color-text-muted)] font-sans">
-          <span>
+          <span className="font-semibold text-[var(--color-brand)]">
             {inputMode === "situation" ? "Situation Memorandum" : "Legal Analysis Briefing"}
           </span>
           <div className="flex items-center gap-2">
@@ -73,7 +73,10 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
               })}
             </time>
             <span>·</span>
-            <span>Verbatim evidence verified</span>
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[var(--radius-full)] bg-[var(--color-emerald-subtle)] text-[var(--color-emerald)] font-semibold text-[11px] border border-[var(--color-emerald-border)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-emerald)]" aria-hidden="true" />
+              Verbatim evidence verified
+            </span>
           </div>
         </div>
 
@@ -89,16 +92,19 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
 
       {/* ── Executive Summary: In Simple Terms ── */}
       {simpleTermsSection && simpleTermsSection.content && (
-        <section aria-labelledby="exec-summary-heading" className="space-y-3 py-2">
-          <h3 id="exec-summary-heading" className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] font-sans">
-            Executive Summary · In Plain Terms
-          </h3>
-          <blockquote
-            className="text-lg sm:text-xl lg:text-[22px] text-[var(--color-text-primary)] font-serif leading-relaxed italic border-l-2 border-[var(--color-brand)] pl-5 py-1"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            &ldquo;{String(simpleTermsSection.content)}&rdquo;
-          </blockquote>
+        <section aria-labelledby="exec-summary-heading" className="space-y-3 py-1">
+          <div className="bg-gradient-to-r from-[var(--color-amber-subtle)]/90 to-[var(--color-bg-card)] border border-[var(--color-amber-border)] rounded-[var(--radius-md)] p-5 sm:p-6 border-l-4 border-l-[var(--color-amber)] shadow-xs">
+            <h3 id="exec-summary-heading" className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-amber)] font-sans mb-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-amber)]" aria-hidden="true" />
+              <span>Executive Summary · In Plain Terms</span>
+            </h3>
+            <blockquote
+              className="text-lg sm:text-xl lg:text-[22px] text-[var(--color-text-primary)] font-serif leading-relaxed italic"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              &ldquo;{String(simpleTermsSection.content)}&rdquo;
+            </blockquote>
+          </div>
         </section>
       )}
 
@@ -111,9 +117,9 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
           type="button"
           onClick={() => setActiveTab("all")}
           className={cn(
-            "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
+            "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans font-medium",
             activeTab === "all"
-              ? "bg-[var(--color-text-primary)] text-[var(--color-text-inverse)] font-medium"
+              ? "bg-[var(--color-brand)] text-white shadow-xs"
               : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]",
           )}
         >
@@ -125,13 +131,16 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
             type="button"
             onClick={() => setActiveTab("important")}
             className={cn(
-              "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
+              "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
               activeTab === "important"
-                ? "bg-[var(--color-brand)] text-white font-medium"
+                ? "bg-[var(--color-brand)] text-white font-medium shadow-xs"
                 : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]",
             )}
           >
-            Key Obligations ({importantFindings.length})
+            <span>Key Obligations</span>
+            <span className={cn("text-[10px] px-1.5 py-0.2 rounded-full", activeTab === "important" ? "bg-white/20 text-white" : "bg-[var(--color-brand-subtle)] text-[var(--color-brand)] font-semibold")}>
+              {importantFindings.length}
+            </span>
           </button>
         )}
 
@@ -140,13 +149,16 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
             type="button"
             onClick={() => setActiveTab("review")}
             className={cn(
-              "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
+              "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
               activeTab === "review"
-                ? "bg-[var(--color-warning)] text-white font-medium"
-                : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]",
+                ? "bg-[var(--color-sienna)] text-white font-medium shadow-xs"
+                : "text-[var(--color-sienna)] bg-[var(--color-sienna-subtle)]/60 hover:bg-[var(--color-sienna-subtle)] border border-[var(--color-sienna-border)]",
             )}
           >
-            Review Areas ({reviewFindings.length})
+            <span>Review Areas</span>
+            <span className={cn("text-[10px] px-1.5 py-0.2 rounded-full", activeTab === "review" ? "bg-white/20 text-white" : "bg-[var(--color-sienna)] text-white font-semibold")}>
+              {reviewFindings.length}
+            </span>
           </button>
         )}
 
@@ -157,7 +169,7 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
             className={cn(
               "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
               activeTab === "steps"
-                ? "bg-[var(--color-brand)] text-white font-medium"
+                ? "bg-[var(--color-brand)] text-white font-medium shadow-xs"
                 : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]",
             )}
           >
@@ -170,13 +182,16 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
             type="button"
             onClick={() => setActiveTab("checklist")}
             className={cn(
-              "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
+              "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
               activeTab === "checklist"
-                ? "bg-[var(--color-brand)] text-white font-medium"
-                : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]",
+                ? "bg-[var(--color-emerald)] text-white font-medium shadow-xs"
+                : "text-[var(--color-emerald)] bg-[var(--color-emerald-subtle)]/70 hover:bg-[var(--color-emerald-subtle)] border border-[var(--color-emerald-border)]",
             )}
           >
-            Checklist ({checklistItems.length})
+            <span>Checklist</span>
+            <span className={cn("text-[10px] px-1.5 py-0.2 rounded-full", activeTab === "checklist" ? "bg-white/20 text-white" : "bg-[var(--color-emerald)] text-white font-semibold")}>
+              {checklistItems.length}
+            </span>
           </button>
         )}
 
@@ -187,7 +202,7 @@ export function ResultWorkspace({ result, className }: ResultWorkspaceProps) {
             className={cn(
               "px-3 py-1.5 rounded-[var(--radius-xs)] whitespace-nowrap transition-colors cursor-pointer font-sans",
               activeTab === "questions"
-                ? "bg-[var(--color-brand)] text-white font-medium"
+                ? "bg-[var(--color-brand)] text-white font-medium shadow-xs"
                 : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]",
             )}
           >
@@ -370,11 +385,18 @@ function EditorialFindingsList({ items, variant }: EditorialFindingsListProps) {
   return (
     <div className="divide-y divide-[var(--color-border-subtle)]" role="list">
       {items.map((item, i) => (
-        <article key={i} className="py-6 first:pt-0 last:pb-0 space-y-3">
+        <article key={i} className="py-6 first:pt-0 last:pb-0 space-y-3.5">
           {/* Finding Title & Sequence */}
           <div className="flex items-baseline gap-3">
-            <span className={cn("text-sm font-serif font-semibold flex-shrink-0", isReview ? "text-[var(--color-warning)]" : "text-[var(--color-brand)]")}>
-              {i + 1}.
+            <span
+              className={cn(
+                "w-6 h-6 rounded-full font-serif font-bold text-xs flex items-center justify-center flex-shrink-0 border shadow-2xs",
+                isReview
+                  ? "bg-[var(--color-sienna-subtle)] text-[var(--color-sienna)] border-[var(--color-sienna-border)]"
+                  : "bg-[var(--color-brand-subtle)] text-[var(--color-brand)] border-[var(--color-brand-border)]",
+              )}
+            >
+              {i + 1}
             </span>
             <h4 className="text-base sm:text-lg font-semibold text-[var(--color-text-primary)] leading-snug font-sans">
               {item.point}
@@ -382,22 +404,31 @@ function EditorialFindingsList({ items, variant }: EditorialFindingsListProps) {
           </div>
 
           {/* Legal Rationale / Practical Explanation */}
-          <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed pl-6 font-sans">
+          <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed pl-9 font-sans">
             {item.why_it_matters}
           </p>
 
-          {/* Editorial Source Quotation (Typographical Quote, Not Code Pill) */}
+          {/* Editorial Source Quotation */}
           {item.evidence && (
-            <div className="ml-6 mt-3 pl-4 border-l-2 border-[var(--color-border)] space-y-1">
+            <div className="ml-9 mt-3 bg-[#FCFAF5] border border-[var(--color-border)] rounded-[var(--radius-sm)] p-3.5 sm:p-4 space-y-1.5 border-l-3 border-l-[var(--color-emerald)] shadow-2xs">
+              <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-emerald)] font-sans">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <span>Verified Source Excerpt</span>
+              </div>
               <blockquote
                 className="text-xs sm:text-sm text-[var(--color-text-primary)] italic font-serif leading-relaxed"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
                 &ldquo;{item.evidence}&rdquo;
               </blockquote>
-              <cite className="not-italic text-[11px] text-[var(--color-text-muted)] block font-sans">
-                Source text{item.source_location ? ` · ${item.source_location}` : ""}
-              </cite>
+              {item.source_location && (
+                <cite className="not-italic text-[11px] text-[var(--color-text-muted)] block font-sans">
+                  Source location: {item.source_location}
+                </cite>
+              )}
             </div>
           )}
         </article>
@@ -427,7 +458,12 @@ function EditorialChecklist({ items }: { items: string[] }) {
         return (
           <li
             key={i}
-            className="py-3.5 flex items-start gap-3.5 cursor-pointer select-none first:pt-0 last:pb-0"
+            className={cn(
+              "py-3.5 px-3 -mx-3 rounded-[var(--radius-sm)] flex items-start gap-3.5 cursor-pointer select-none transition-all first:pt-3 last:pb-3",
+              isChecked
+                ? "bg-[var(--color-emerald-subtle)]/50"
+                : "hover:bg-[var(--color-bg-subtle)]/60",
+            )}
             onClick={() => toggle(i)}
           >
             <div
@@ -442,15 +478,15 @@ function EditorialChecklist({ items }: { items: string[] }) {
                 }
               }}
               className={cn(
-                "flex-shrink-0 mt-0.5 w-4 h-4 rounded-[2px] border flex items-center justify-center transition-colors",
+                "flex-shrink-0 mt-0.5 w-4 h-4 rounded-[3px] border flex items-center justify-center transition-all",
                 isChecked
-                  ? "bg-[var(--color-brand)] border-[var(--color-brand)] text-white"
-                  : "bg-transparent border-[var(--color-border)] hover:border-[var(--color-brand)]",
+                  ? "bg-[var(--color-emerald)] border-[var(--color-emerald)] text-white shadow-2xs"
+                  : "bg-white border-[var(--color-border)] hover:border-[var(--color-emerald)]",
               )}
             >
               {isChecked && (
                 <svg width="10" height="8" viewBox="0 0 11 9" fill="none" aria-hidden="true" className="stroke-current">
-                  <path d="M1 4.5L4 7.5L10 1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 4.5L4 7.5L10 1" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
             </div>
@@ -459,7 +495,7 @@ function EditorialChecklist({ items }: { items: string[] }) {
               className={cn(
                 "text-sm leading-relaxed font-sans transition-colors",
                 isChecked
-                  ? "line-through text-[var(--color-text-muted)]"
+                  ? "line-through text-[var(--color-emerald)]/70 font-normal"
                   : "text-[var(--color-text-primary)]",
               )}
             >

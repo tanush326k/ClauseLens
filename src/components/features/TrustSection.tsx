@@ -36,7 +36,7 @@ export function TrustSection({ className }: TrustSectionProps) {
         className,
       )}
     >
-      <div className="max-w-[1100px] mx-auto px-5 sm:px-8 space-y-7">
+      <div className="max-w-[880px] mx-auto px-4 sm:px-8 space-y-7">
         
         {/* Principles row */}
         <div className="space-y-4">
@@ -49,9 +49,9 @@ export function TrustSection({ className }: TrustSectionProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PRINCIPLES.map((p, i) => (
-              <div key={p.title} className="space-y-1.5">
-                <span className="text-xs font-serif font-semibold text-[var(--color-brand)] block">
-                  {i + 1}.
+              <div key={p.title} className="space-y-2">
+                <span className="w-5 h-5 rounded-full bg-[var(--color-brand-subtle)] text-[var(--color-brand)] border border-[var(--color-brand-border)] text-[11px] font-serif font-bold flex items-center justify-center flex-shrink-0 shadow-xs">
+                  {i + 1}
                 </span>
                 <h3 className="text-xs font-semibold text-[var(--color-text-primary)]">
                   {p.title}

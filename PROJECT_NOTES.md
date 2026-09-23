@@ -1,6 +1,6 @@
 # ClauseLens — PROJECT NOTES
 
-> Last updated: Day 6 — Premium UI/UX Redesign (Competition-Level Presentation)
+> Last updated: Release Candidate — Premium UI/UX Polish
 
 ---
 
@@ -10,7 +10,7 @@
 
 A GenAI-powered tool that helps users understand legal text, make sense of difficult situations, and prepare better questions — in plain language.
 
-**Competition context**: AI for Legal Assistance and Access
+**Product domain**: AI for Legal Assistance, Access, and Clause Comprehension
 
 ---
 
@@ -249,7 +249,7 @@ UI: `ComparisonWorkspace.tsx` with side-by-side Text A / Text B difference cards
 
 ---
 
-## Day 5C — Competition-Readiness Fixes
+## Day 5C — Release-Readiness & Usability Fixes
 
 ### FollowUpPanel Removed from Active UI
 `FollowUpPanel.tsx` was a Day 1 UI scaffold for a future follow-up Q&A feature.
@@ -282,7 +282,7 @@ project description, problem statement, GenAI role, grounding approach, safety p
 
 ---
 
-## Day 6 — Premium UI/UX Redesign (Competition-Level Presentation)
+## Day 6 — Premium Editorial UI/UX Polish
 
 ### Brand Identity
 - Custom vector ClauseLens mark: Geometric fusion of optical aperture focus lens, abstract CL monogram, and structured legal clause bracket.

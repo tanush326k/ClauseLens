@@ -18,27 +18,27 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantStyles: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary: [
-    "bg-[var(--color-brand)] text-white",
+    "bg-[var(--color-brand)] text-[var(--color-text-inverse)]",
     "border border-[var(--color-brand-hover)]",
     "hover:bg-[var(--color-brand-hover)]",
-    "shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-card)]",
-    "active:scale-[0.985] transition-all duration-[var(--transition-fast)]",
-    "disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:active:scale-100",
+    "shadow-[var(--shadow-sm),inset_0_1px_0_rgba(255,255,255,0.14)] hover:shadow-[var(--shadow-card),inset_0_1px_0_rgba(255,255,255,0.18)]",
+    "active:scale-[0.985] active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.25)] transition-all duration-[var(--transition-fast)]",
+    "disabled:bg-[var(--color-surface)] disabled:text-[var(--color-text-muted)] disabled:border-[var(--color-border)] disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:active:scale-100",
   ].join(" "),
 
   secondary: [
     "bg-[var(--color-bg-card)] text-[var(--color-text-primary)]",
     "border border-[var(--color-border)]",
     "hover:bg-[var(--color-bg-subtle)] hover:border-[var(--color-text-muted)]",
-    "shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)]",
-    "active:scale-[0.985] transition-all duration-[var(--transition-fast)]",
+    "shadow-[var(--shadow-xs),inset_0_-1px_0_rgba(0,0,0,0.02)] hover:shadow-[var(--shadow-sm)]",
+    "active:scale-[0.985] active:shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] transition-all duration-[var(--transition-fast)]",
     "disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100",
   ].join(" "),
 
   outline: [
     "bg-transparent text-[var(--color-text-primary)]",
     "border border-[var(--color-border)]",
-    "hover:bg-[var(--color-bg-subtle)] hover:border-[var(--color-brand-muted)]",
+    "hover:bg-[var(--color-surface)] hover:border-[var(--color-brand-muted)]",
     "active:scale-[0.985] transition-all duration-[var(--transition-fast)]",
     "disabled:opacity-50 disabled:cursor-not-allowed",
   ].join(" "),

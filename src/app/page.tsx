@@ -190,7 +190,7 @@ export default function ClauseLensApp() {
         <section
           id="workspace"
           aria-label="ClauseLens Analysis Workspace"
-          className="pb-10 px-5 sm:px-8 max-w-[1240px] mx-auto w-full"
+          className="pb-10 px-4 sm:px-8 max-w-[1240px] mx-auto w-full"
         >
           <InputWorkspace
             onSubmit={handleSubmit}
@@ -198,10 +198,11 @@ export default function ClauseLensApp() {
             isLoading={appState === "loading"}
             resetKey={resetKey}
             initialMode={activeMode}
+            onModeChange={setActiveMode}
           />
 
           {/* Inline Trust Note directly below workspace */}
-          <div className="mt-7 max-w-[1100px] mx-auto">
+          <div className="mt-6 max-w-[880px] mx-auto">
             <Disclaimer variant="inline" />
           </div>
         </section>
@@ -218,7 +219,7 @@ export default function ClauseLensApp() {
           )}
         >
           {/* Subtle Editorial Divider */}
-          <div aria-hidden="true" className="flex items-center gap-4 my-8 max-w-[1100px] mx-auto">
+          <div aria-hidden="true" className="flex items-center gap-4 my-8 max-w-[880px] mx-auto">
             <div className="flex-1 h-px bg-[var(--color-border)]" />
             <span className="text-xs text-[var(--color-text-muted)] font-serif italic">
               {appState === "loading"
@@ -235,7 +236,7 @@ export default function ClauseLensApp() {
 
           {/* Error State */}
           {appState === "error" && error && (
-            <div className="max-w-[1100px] mx-auto">
+            <div className="max-w-[880px] mx-auto">
               <ErrorState
                 error={error}
                 onRetry={handleRetry}
@@ -250,7 +251,7 @@ export default function ClauseLensApp() {
               <ResultWorkspace result={result} />
 
               {/* Action Bar */}
-              <div className="max-w-[1100px] mx-auto flex items-center justify-between pt-4 border-t border-[var(--color-border)]">
+              <div className="max-w-[880px] mx-auto flex items-center justify-between pt-4 border-t border-[var(--color-border)]">
                 <Button
                   variant="secondary"
                   size="md"
@@ -281,7 +282,7 @@ export default function ClauseLensApp() {
               <ComparisonWorkspace result={comparisonResult} />
 
               {/* Action Bar */}
-              <div className="max-w-[1100px] mx-auto flex items-center justify-between pt-4 border-t border-[var(--color-border)]">
+              <div className="max-w-[880px] mx-auto flex items-center justify-between pt-4 border-t border-[var(--color-border)]">
                 <Button
                   variant="secondary"
                   size="md"

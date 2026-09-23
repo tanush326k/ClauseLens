@@ -18,12 +18,24 @@ const TOPIC_ITEMS: Array<{
   description: string;
   examplePrompt: string;
   icon: React.ReactNode;
+  accent: {
+    iconBg: string;
+    iconText: string;
+    iconBorder: string;
+    hoverBorder: string;
+  };
 }> = [
   {
     id: "housing",
     label: "Housing",
     description: "Rent changes & deposit disputes",
     examplePrompt: "I received a notice from my landlord regarding rent increases and deposit deductions, and I need to know my rights.",
+    accent: {
+      iconBg: "bg-[#FCF8F0]",
+      iconText: "text-[#9C6E1E]",
+      iconBorder: "border-[#EBDAB8]",
+      hoverBorder: "hover:border-[#9C6E1E]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -36,6 +48,12 @@ const TOPIC_ITEMS: Array<{
     label: "Employment",
     description: "Non-competes & notice periods",
     examplePrompt: "My employer is asking me to sign a non-compete clause restricting where I can work for 12 months.",
+    accent: {
+      iconBg: "bg-[#EDF3FA]",
+      iconText: "text-[#112240]",
+      iconBorder: "border-[#C4D6EB]",
+      hoverBorder: "hover:border-[#112240]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
@@ -48,6 +66,12 @@ const TOPIC_ITEMS: Array<{
     label: "Contracts",
     description: "Indemnity & liability caps",
     examplePrompt: "I need to understand the indemnity and liability limitation clauses in this consulting agreement before signing.",
+    accent: {
+      iconBg: "bg-[#F2F5F8]",
+      iconText: "text-[#3A506B]",
+      iconBorder: "border-[#CDD7E1]",
+      hoverBorder: "hover:border-[#3A506B]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -62,6 +86,12 @@ const TOPIC_ITEMS: Array<{
     label: "Consumer",
     description: "Cancellations & refund rights",
     examplePrompt: "A company refused to honor my cancellation request or refund within the statutory cooling-off period.",
+    accent: {
+      iconBg: "bg-[#F0F7F3]",
+      iconText: "text-[#195C38]",
+      iconBorder: "border-[#C0DFCD]",
+      hoverBorder: "hover:border-[#195C38]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="9" cy="21" r="1"/>
@@ -75,6 +105,12 @@ const TOPIC_ITEMS: Array<{
     label: "Payments & Debt",
     description: "Late interest & fee penalties",
     examplePrompt: "A debt collection agency has sent a formal notice with unexpected fees and interest penalties.",
+    accent: {
+      iconBg: "bg-[#FDF5F1]",
+      iconText: "text-[#943C1D]",
+      iconBorder: "border-[#ECCEC2]",
+      hoverBorder: "hover:border-[#943C1D]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -87,6 +123,12 @@ const TOPIC_ITEMS: Array<{
     label: "Business",
     description: "Partnerships & voting terms",
     examplePrompt: "I am evaluating a partnership operating agreement with specific voting thresholds and dissolution clauses.",
+    accent: {
+      iconBg: "bg-[#F4F3FA]",
+      iconText: "text-[#473B7B]",
+      iconBorder: "border-[#D7D2EC]",
+      hoverBorder: "hover:border-[#473B7B]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="18" y1="20" x2="18" y2="10"/>
@@ -100,6 +142,12 @@ const TOPIC_ITEMS: Array<{
     label: "Privacy & Data",
     description: "Tracking policies & disclosures",
     examplePrompt: "A mobile application privacy policy states they may sell anonymized browsing data to third-party brokers.",
+    accent: {
+      iconBg: "bg-[#EEF8F8]",
+      iconText: "text-[#165B5E]",
+      iconBorder: "border-[#BDE3E4]",
+      hoverBorder: "hover:border-[#165B5E]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -112,6 +160,12 @@ const TOPIC_ITEMS: Array<{
     label: "Formal Notices",
     description: "Demand letters & deadlines",
     examplePrompt: "I have received a formal dispute letter and need a structured explanation of what it requires.",
+    accent: {
+      iconBg: "bg-[#FDF2F2]",
+      iconText: "text-[#8C2424]",
+      iconBorder: "border-[#EAC4C4]",
+      hoverBorder: "hover:border-[#8C2424]/50",
+    },
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10"/>
@@ -152,7 +206,8 @@ export function TopicShortcuts({ onSelect, className }: TopicShortcutsProps) {
             className={cn(
               "flex flex-col justify-between p-4 text-left",
               "bg-[var(--color-bg-card)] hover:bg-[var(--color-surface)]",
-              "border border-[var(--color-border)] hover:border-[var(--color-brand)]/50",
+              "border border-[var(--color-border)]",
+              topic.accent.hoverBorder,
               "rounded-[var(--radius-md)]",
               "transition-all duration-200",
               "group cursor-pointer select-none shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)]",
@@ -162,18 +217,21 @@ export function TopicShortcuts({ onSelect, className }: TopicShortcutsProps) {
             <div className="flex items-center justify-between w-full mb-2.5">
               <div
                 className={cn(
-                  "w-8 h-8 rounded-[var(--radius-sm)] flex-shrink-0 flex items-center justify-center",
-                  "bg-[var(--color-surface)] text-[var(--color-text-muted)]",
-                  "border border-[var(--color-border)]",
-                  "group-hover:text-[var(--color-brand)] group-hover:border-[var(--color-brand)]/40 group-hover:bg-[var(--color-brand-subtle)]",
-                  "transition-colors duration-200",
+                  "w-8 h-8 rounded-[var(--radius-sm)] flex-shrink-0 flex items-center justify-center border transition-all duration-200",
+                  topic.accent.iconBg,
+                  topic.accent.iconText,
+                  topic.accent.iconBorder,
+                  "group-hover:scale-105 shadow-xs",
                 )}
                 aria-hidden="true"
               >
                 {topic.icon}
               </div>
               <span
-                className="text-[11px] font-mono text-[var(--color-text-muted)] group-hover:text-[var(--color-brand)] transition-colors opacity-0 group-hover:opacity-100"
+                className={cn(
+                  "text-[11px] font-mono transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5",
+                  topic.accent.iconText,
+                )}
                 aria-hidden="true"
               >
                 →

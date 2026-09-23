@@ -55,7 +55,7 @@ export function SiteNavbar({
 
           {/* Mode Switcher (Center - Desktop) */}
           <nav
-            className="hidden sm:flex items-center gap-1 bg-[var(--color-surface)] p-1 rounded-[var(--radius-sm)] border border-[var(--color-border)]"
+            className="hidden sm:flex items-center gap-6"
             aria-label="Primary navigation"
           >
             <button
@@ -65,10 +65,10 @@ export function SiteNavbar({
                 scrollToWorkspace();
               }}
               className={cn(
-                "px-3.5 py-1 text-xs rounded-[var(--radius-xs)] transition-colors cursor-pointer font-sans",
+                "text-xs transition-all cursor-pointer font-sans py-1 border-b-2",
                 activeMode === "understand"
-                  ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-xs font-semibold"
-                  : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] font-normal",
+                  ? "text-[var(--color-text-primary)] font-semibold border-[var(--color-brand)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] font-normal border-transparent",
               )}
             >
               Understand
@@ -80,10 +80,10 @@ export function SiteNavbar({
                 scrollToWorkspace();
               }}
               className={cn(
-                "px-3.5 py-1 text-xs rounded-[var(--radius-xs)] transition-colors cursor-pointer font-sans",
+                "text-xs transition-all cursor-pointer font-sans py-1 border-b-2",
                 activeMode === "compare"
-                  ? "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] shadow-xs font-semibold"
-                  : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] font-normal",
+                  ? "text-[var(--color-text-primary)] font-semibold border-[var(--color-brand)]"
+                  : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] font-normal border-transparent",
               )}
             >
               Compare
@@ -97,7 +97,7 @@ export function SiteNavbar({
               onClick={scrollToSafety}
               className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors cursor-pointer px-2 py-1 rounded"
             >
-              Legal Boundaries & Safety
+              Legal Boundaries
             </button>
           </div>
 

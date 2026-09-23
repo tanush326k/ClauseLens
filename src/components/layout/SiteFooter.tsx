@@ -31,7 +31,7 @@ export function SiteFooter({
         className,
       )}
     >
-      <div className="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-text-muted)]">
+      <div className="max-w-[880px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-text-muted)]">
         <div className="flex items-center gap-2.5">
           <ClauseLensLogo variant="full" size="sm" />
           <span className="hidden md:inline text-xs text-[var(--color-text-muted)]">
