@@ -1,6 +1,21 @@
 # ClauseLens
 
-### Legal information, without the legal complexity.
+<p align="center">
+  <strong>Legal information, without the legal complexity.</strong><br>
+  <em>An educational comprehension desk that turns opaque contractual language into structured, plain-English memorandums.</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15.3.4-black?style=flat-square&logo=next.js" alt="Next.js 15" />
+  <img src="https://img.shields.io/badge/React-19.0-61dafb?style=flat-square&logo=react" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript" alt="TypeScript 5" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind CSS v4" />
+  <img src="https://img.shields.io/badge/Google_GenAI-gemini--3.8--flash-orange?style=flat-square&logo=google" alt="Google GenAI" />
+  <img src="https://img.shields.io/badge/Vitest-54_Passed-success?style=flat-square&logo=vitest" alt="Vitest 54 Passed" />
+  <img src="https://img.shields.io/badge/Vercel-Production_Ready-black?style=flat-square&logo=vercel" alt="Vercel Ready" />
+</p>
+
+---
 
 ClauseLens helps individuals and teams turn dense, opaque legal language into clearer, structured information they can understand, evaluate, and discuss with counsel.
 
@@ -12,7 +27,7 @@ Rather than predicting legal outcomes or replacing attorneys, ClauseLens operate
 
 | Capability | Purpose | Implementation Grounding |
 |---|---|---|
-| **Understand** | Turn a described situation or pasted clause into structured analysis | Analyzes plain-language circumstances or formal clause syntax |
+| **Understand Mode** | Turn a described situation or pasted clause into structured analysis | Analyzes plain-language circumstances or formal clause syntax |
 | **In Plain Terms** | Executive plain-English explanation of core legal mechanics | Synthesized without jargon or legalese |
 | **Important Points** | Surface key obligations, surrender conditions, and explicit deadlines | Each point is anchored to verbatim source excerpts |
 | **Review Points** | Highlight clauses warranting closer inspection or negotiation | Identifies asymmetric risk, one-sided remedies, or short windows |
@@ -28,25 +43,33 @@ Rather than predicting legal outcomes or replacing attorneys, ClauseLens operate
 
 ```mermaid
 flowchart LR
-    U([User]) --> C[ClauseLens Workspace]
+    subgraph InputStage ["1. Input & Mode Selection"]
+        U([User]) --> C[ClauseLens Workspace]
+        C --> M{Select Mode}
+        M -->|Understand| I[Situation or Legal Clause]
+        M -->|Compare| A[Draft A + Draft B]
+    end
 
-    C --> M{Analysis Mode}
+    subgraph InferenceStage ["2. Secure Model Synthesis"]
+        I --> G[Google GenAI Engine<br/>gemini-3.8-flash]
+        A --> G
+        G --> V[Zod Strict Schema Validation]
+    end
 
-    M -->|Understand| I[Situation or Legal Text]
-    M -->|Compare| A[Version A + Version B]
+    subgraph GroundingStage ["3. Independent Verification"]
+        V --> EV[Verbatim Evidence Verification Engine]
+        EV -->|Substring Match| OK[Anchored Citation]
+        EV -->|Mismatch / Hallucination| NULL[Scrubbed to null]
+    end
 
-    I --> G[Google GenAI Engine<br/>gemini-3.8-flash]
-    A --> G
-
-    G --> V[Zod Schema Validation]
-    V --> E[Verbatim Evidence Verification]
-
-    E --> R[Structured Memorandum]
-
-    R --> S[In Plain Terms]
-    R --> P[Key Obligations & Review Points]
-    R --> N[Action Sequence & Checklist]
-    R --> Q[Counsel Agenda]
+    subgraph OutputStage ["4. Structured Memorandum"]
+        OK --> RM[Editorial Memorandum]
+        NULL --> RM
+        RM --> S[In Plain Terms]
+        RM --> P[Key Points & Review Flags]
+        RM --> N[Next Steps & Interactive Checklist]
+        RM --> Q[Counsel Agenda with 1-Click Copy]
+    end
 ```
 
 ### Analysis Pipeline
@@ -59,40 +82,67 @@ flowchart LR
 
 ---
 
+## Verbatim Evidence Grounding
+
+To prevent synthetic hallucinations or fabricated legal clauses, ClauseLens applies a dual-layer verification protocol:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Client as User Browser
+    participant API as /api/analyze Handler
+    participant Gemini as Google GenAI (gemini-3.8-flash)
+    participant Verifier as Server-Side Substring Verifier
+
+    Client->>API: POST /api/analyze (mode, raw text)
+    API->>Gemini: generateContent (delimited input, strict schema)
+    Gemini-->>API: Raw JSON response with citations
+    API->>Verifier: Check evidence excerpt & section against source text
+    alt Normalized substring match found
+        Verifier-->>API: Verified citation preserved
+    else Substring mismatch or >200 chars
+        Verifier-->>API: Evidence silently set to null (no false citation)
+    end
+    API-->>Client: 200 OK (Clean, grounded memorandum)
+```
+
+- **Situation Mode**: Any quotation is strictly set to `null` server-side because informal situation descriptions do not contain contractual provisions.
+- **Document / Compare Mode**: Every quote is normalized (Unicode NFC, typographic quotes, whitespace collapse) and checked against raw text.
+- **Fail-Safe Design**: If the AI attempts to paraphrase rather than quote verbatim, the excerpt is nulled rather than presented as authentic source text.
+
+---
+
 ## Architecture & Technology Stack
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Client Layer (Browser)"]
-        UI[Editorial Interface]
-        IW[Input Workspace · Understand & Compare]
-        RW[Result Workspace · Memorandum & Checklist]
-        CW[Comparison Workspace · Side-by-Side Diff]
-        DS[Design System · Tailwind CSS v4 + Semantic Tokens]
+    subgraph ClientLayer ["Client Layer · Next.js 15 (Edge CDN)"]
+        UI["Editorial Interface (Tailwind CSS v4)"]
+        IW["Input Workspace (Understand & Compare)"]
+        RW["Result Workspace (Memorandum & Checklist)"]
+        CW["Comparison Workspace (Side-by-Side Diff)"]
     end
 
-    subgraph Server ["Server Layer (Next.js App Router)"]
-        API["/api/analyze Route Handler"]
-        VAL[Zod Request & Response Validator]
-        ENG[Grounding & Prompt Engine]
-        EV[Verbatim Evidence Verification Engine]
-        ERR[Sanitized Error & Retry Manager]
+    subgraph ServerLayer ["Serverless Compute · Vercel Runtime"]
+        API["POST /api/analyze Route Handler (force-dynamic)"]
+        VAL["Zod Input / Output Validator"]
+        VER["Evidence & Citation Verifier"]
+        RET["Transient Error & Retry Orchestrator"]
     end
 
-    subgraph External ["Inference Layer"]
-        GEMINI["Google GenAI SDK (@google/genai)<br/>gemini-3.8-flash"]
+    subgraph InferenceLayer ["Model Layer · Google AI"]
+        GEMINI["Google GenAI SDK (@google/genai)<br/>Model: gemini-3.8-flash"]
     end
 
     UI --> IW
     IW --> API
     API --> VAL
-    VAL --> ENG
-    ENG --> GEMINI
+    VAL --> RET
+    RET --> GEMINI
     GEMINI --> VAL
-    VAL --> EV
-    EV --> ERR
-    ERR --> RW
-    ERR --> CW
+    VAL --> VER
+    VER --> RW
+    VER --> CW
 ```
 
 ### Core Technologies
@@ -200,12 +250,20 @@ ClauseLens/
 
 ### Production Deployment
 
-ClauseLens is ready for standard deployment on platforms like [Vercel](https://vercel.com/):
+ClauseLens is architected for zero-configuration deployment on platforms like [Vercel](https://vercel.com/):
 
-1. Import the repository into Vercel.
-2. In **Project Settings > Environment Variables**, add:
-   - `GEMINI_API_KEY`: Your Gemini API key from Google AI Studio.
-3. Deploy. Next.js automatically serves the static editorial interface via global edge CDN and hosts `/api/analyze` as a secure Serverless Function. No client-side exposure of API keys occurs.
+```mermaid
+flowchart LR
+    REPO["GitHub Repository<br/>(main branch)"] --> VERCEL["Vercel Deployment Pipeline"]
+    VERCEL --> CDN["Global Edge CDN<br/>Static UI Pages (/)"]
+    VERCEL --> FN["Serverless Function<br/>API Handler (/api/analyze)"]
+    FN <-->|"Encrypted HTTPS<br/>(GEMINI_API_KEY)"| GEMINI["Google GenAI<br/>gemini-3.8-flash"]
+```
+
+1. **Import Project**: Connect `https://github.com/tanush326k/ClauseLens` to your Vercel workspace.
+2. **Environment Variable**: Under **Project Settings > Environment Variables**, add:
+   - `GEMINI_API_KEY`: Your Google AI Studio API key.
+3. **Deploy**: Vercel compiles the static pages for sub-second global CDN distribution while running the `/api/analyze` route as an isolated serverless function with complete secret protection.
 
 ---
 
