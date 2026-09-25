@@ -198,6 +198,15 @@ ClauseLens/
    ```
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+### Production Deployment
+
+ClauseLens is ready for standard deployment on platforms like [Vercel](https://vercel.com/):
+
+1. Import the repository into Vercel.
+2. In **Project Settings > Environment Variables**, add:
+   - `GEMINI_API_KEY`: Your Gemini API key from Google AI Studio.
+3. Deploy. Next.js automatically serves the static editorial interface via global edge CDN and hosts `/api/analyze` as a secure Serverless Function. No client-side exposure of API keys occurs.
+
 ---
 
 ## Verification & Testing
