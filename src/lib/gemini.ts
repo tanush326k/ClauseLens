@@ -18,7 +18,8 @@ import {
 } from "@/lib/schema";
 
 export type { ClauseLensAnalysis, ClauseLensComparison };
-export const GEMINI_MODEL = "gemini-3.8-flash";
+export const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-flash-lite-latest";
+export const FALLBACK_MODEL = "gemini-3.5-flash-lite";
 
 /**
  * Checks if an error is a genuine transient, retryable error (rate limit, service overload, network drop)
@@ -97,9 +98,9 @@ export async function generateAnalysisWithGemini(
   const ai = client || getGeminiClient();
   const prompt = buildUserPrompt(mode, inputText);
 
-  const callModel = async (): Promise<string> => {
+  const callModel = async (modelToUse: string = GEMINI_MODEL): Promise<string> => {
     const response = await ai.models.generateContent({
-      model: GEMINI_MODEL,
+      model: modelToUse,
       contents: prompt,
       config: {
         systemInstruction: CLAUSELENS_SYSTEM_INSTRUCTION,
@@ -224,13 +225,14 @@ export async function generateAnalysisWithGemini(
   let rawJsonText: string;
 
   try {
-    rawJsonText = await callModel();
+    rawJsonText = await callModel(GEMINI_MODEL);
   } catch (initialError) {
     if (isRetryableError(initialError)) {
       // Bounded retry-once with a short backoff (500ms)
       await new Promise((resolve) => setTimeout(resolve, 500));
       try {
-        rawJsonText = await callModel();
+        const retryModel = GEMINI_MODEL !== FALLBACK_MODEL ? FALLBACK_MODEL : GEMINI_MODEL;
+        rawJsonText = await callModel(retryModel);
       } catch (retryError) {
         // Only classify as persistent high demand if the retry error is genuinely transient
         if (isRetryableError(retryError)) {
@@ -280,9 +282,9 @@ export async function generateComparisonWithGemini(
   const ai = client || getGeminiClient();
   const prompt = buildComparisonPrompt(textA, textB);
 
-  const callModel = async (): Promise<string> => {
+  const callModel = async (modelToUse: string = GEMINI_MODEL): Promise<string> => {
     const response = await ai.models.generateContent({
-      model: GEMINI_MODEL,
+      model: modelToUse,
       contents: prompt,
       config: {
         systemInstruction: CLAUSELENS_COMPARISON_SYSTEM_INSTRUCTION,
@@ -413,12 +415,13 @@ export async function generateComparisonWithGemini(
   let rawJsonText: string;
 
   try {
-    rawJsonText = await callModel();
+    rawJsonText = await callModel(GEMINI_MODEL);
   } catch (initialError) {
     if (isRetryableError(initialError)) {
       await new Promise((resolve) => setTimeout(resolve, 500));
       try {
-        rawJsonText = await callModel();
+        const retryModel = GEMINI_MODEL !== FALLBACK_MODEL ? FALLBACK_MODEL : GEMINI_MODEL;
+        rawJsonText = await callModel(retryModel);
       } catch (retryError) {
         if (isRetryableError(retryError)) {
           throw new Error(

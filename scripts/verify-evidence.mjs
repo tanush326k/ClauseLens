@@ -95,7 +95,7 @@ Provide your response adhering strictly to the requested structured JSON schema.
   let rawText;
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
+      model: "gemini-flash-lite-latest",
       contents: userPrompt,
       config: {
         responseMimeType: "application/json",
