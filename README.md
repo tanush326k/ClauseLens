@@ -6,17 +6,17 @@
 </p>
 
 <p align="center">
-  <a href="https://clauselens-l93x.onrender.com/"><strong>🌐 Live Application: https://clauselens-l93x.onrender.com/</strong></a>
+  <a href="https://clauselens-bh5n.onrender.com/"><strong>🌐 Live Application: https://clauselens-bh5n.onrender.com/</strong></a>
 </p>
 
 <p align="center">
-  <a href="https://clauselens-l93x.onrender.com/"><img src="https://img.shields.io/badge/Live_Website-Active-brightgreen?style=flat-square&logo=render" alt="Live Website" /></a>
+  <a href="https://clauselens-bh5n.onrender.com/"><img src="https://img.shields.io/badge/Live_Website-Active-brightgreen?style=flat-square&logo=render" alt="Live Website" /></a>
   <img src="https://img.shields.io/badge/Next.js-15.3.4-black?style=flat-square&logo=next.js" alt="Next.js 15" />
   <img src="https://img.shields.io/badge/React-19.0-61dafb?style=flat-square&logo=react" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript" alt="TypeScript 5" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind CSS v4" />
   <img src="https://img.shields.io/badge/Google_GenAI-gemini--3.8--flash-orange?style=flat-square&logo=google" alt="Google GenAI" />
-  <img src="https://img.shields.io/badge/Vitest-54_Passed-success?style=flat-square&logo=vitest" alt="Vitest 54 Passed" />
+  <img src="https://img.shields.io/badge/Vitest-97_Passed-success?style=flat-square&logo=vitest" alt="Vitest 97 Passed" />
 </p>
 
 ---
@@ -255,7 +255,7 @@ ClauseLens/
 ### Live Production Deployment
 
 ClauseLens is currently deployed and running live in production:
-👉 **[https://clauselens-l93x.onrender.com/](https://clauselens-l93x.onrender.com/)**
+👉 **[https://clauselens-bh5n.onrender.com/](https://clauselens-bh5n.onrender.com/)**
 
 ### Deployment Architecture
 
@@ -281,7 +281,7 @@ flowchart LR
 ClauseLens includes automated type checking, linting, and integration test suites:
 
 ```bash
-# Run unit and integration tests (54 tests covering routes, retries, and schemas)
+# Run unit and integration tests (97 tests across 5 test suites covering routes, schemas, retries, and utilities)
 npm test -- --run
 
 # Run TypeScript type check
